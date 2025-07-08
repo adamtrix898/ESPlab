@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ESPLab - Proyectos con Arduino y ESP32</title>
+  <style>
+    :root {
+      --color-bg: #f8f9fa;
+      --color-text: #1e1e1e;
+      --color-dark: #0f0f0f;
+      --color-primary: #007bff;
+      --color-secondary: #6c757d;
+      --color-accent: #ff6f00;
+      --color-card-bg: #fff;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    header {
+      background: var(--color-dark);
+      padding: 3rem 1rem;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card {
+      background-color: var(--color-card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      transition: transform 0.2s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      margin: 0.5rem 0 1rem;
+      color: #555;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: var(--color-primary);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .article {
+      display: none;
+      background: #fffbe6;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-top: 1rem;
+      animation: expand 0.3s ease-out;
+    }
+
+    .article h3 {
+      margin-top: 0;
+      color: var(--color-accent);
+    }
+
+    .article pre, .article code {
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+
+    .btn-hide {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--color-dark);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @keyframes expand {
+      0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      100% { opacity: 1; transform: scaleY(1); }
+    }
+
+    footer {
+      background: #eee;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Bienvenido a ESPLab</h1>
+    <p>Descubre proyectos y guías con Arduino y ESP32.<br>En ESPLab encontrarás una variedad de proyectos prácticos, detallados y guías para aprender a trabajar con Arduino, ESP32 y más.</p>
+  </header>
+
+  <section>
+    <h2>Proyectos Arduino Simples</h2>
+    <div class="grid grid-2">
+      <div class="card" style="background:#fff3cd">
+        <h3>LED parpadeante</h3>
+        <p>Haz parpadear un LED con Arduino. El clásico para empezar.</p>
+        <a onclick="mostrarArticulo('led')">Ver más →</a>
+        <div id="articulo-led" class="article">
+          <h3>LED parpadeante</h3>
+          <p><strong>Materiales:</strong> Arduino UNO, LED, resistencia 220Ω, cables</p>
+          <pre><code>void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(500);
+  digitalWrite(13, LOW);
+  delay(500);
+}</code></pre>
+          <a class="btn-hide" onclick="ocultarArticulo('led')">Ocultar</a>
+        </div>
+      </div>
+
+      <div class="card" style="background:#fff3cd">
+        <h3>Control de luz con LDR</h3>
+        <p>Detecta la luz ambiental y controla un LED automáticamente.</p>
+        <a onclick="mostrarArticulo('ldr')">Ver más →</a>
+        <div id="articulo-ldr" class="article">
+          <h3>Control de luz con LDR</h3>
+          <p><strong>Materiales:</strong> Arduino UNO, LDR, resistencia 10kΩ, LED, cables</p>
+          <pre><code>int ldr = A0;
+int led = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  int valor = analogRead(ldr);
+  if(valor < 500) digitalWrite(led, HIGH);
+  else digitalWrite(led, LOW);
+}</code></pre>
+          <a class="btn-hide" onclick="ocultarArticulo('ldr')">Ocultar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Proyectos con ESP32</h2>
+    <div class="grid grid-2">
+      <div class="card" style="background:#e2f0fb">
+        <h3>Control LED desde el móvil</h3>
+        <p>Usa WiFi del ESP32 para encender un LED desde tu smartphone.</p>
+        <a onclick="mostrarArticulo('ledwifi')">Ver más →</a>
+        <div id="articulo-ledwifi" class="article">
+          <h3>Control LED desde el móvil</h3>
+          <p><strong>Materiales:</strong> ESP32, LED, resistencia, cables</p>
+          <pre><code>const int led = 2;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  Serial.begin(115200);
+  // configuración WiFi omitida
+}
+
+void loop() {
+  // código para controlar LED desde web server
+}</code></pre>
+          <a class="btn-hide" onclick="ocultarArticulo('ledwifi')">Ocultar</a>
+        </div>
+      </div>
+
+      <div class="card" style="background:#e2f0fb">
+        <h3>Monitor de temperatura WiFi</h3>
+        <p>Muestra temperatura en una web usando sensor DHT11 y ESP32.</p>
+        <a onclick="mostrarArticulo('dhtwifi')">Ver más →</a>
+        <div id="articulo-dhtwifi" class="article">
+          <h3>Monitor de temperatura WiFi</h3>
+          <p><strong>Materiales:</strong> ESP32, sensor DHT11, cables</p>
+          <pre><code>#include "DHT.h"
+#define DHTPIN 4
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(115200);
+  dht.begin();
+}
+
+void loop() {
+  float temp = dht.readTemperature();
+  Serial.println(temp);
+  delay(2000);
+}</code></pre>
+          <a class="btn-hide" onclick="ocultarArticulo('dhtwifi')">Ocultar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 ESPLab. Creado con pasión por la tecnología 🚀
+  </footer>
+
+  <script>
+    function mostrarArticulo(id) {
+      const article = document.getElementById('articulo-' + id);
+      article.style.display = article.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function ocultarArticulo(id) {
+      document.getElementById('articulo-' + id).style.display = 'none';
+    }
+  </script>
+</body>
+</html>
