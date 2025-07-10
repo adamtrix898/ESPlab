@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESPLab - Proyectos con Arduino y ESP32</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --color-primary: #00bfff;
+      --color-accent: #ff6f00;
+      --color-bg: #0d1117;
+      --color-text: #f0f0f0;
+      --color-card: #161b22;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--color-primary);
+    }
+
+    .hero {
+      height: 100vh;
+      background: url('https://i.imgur.com/ISQqXQ7.jpg') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+    }
+
+    .hero button {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      background: var(--color-primary);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .hero button:hover {
+      background: #0097cc;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--color-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 0.8rem;
+      color: var(--color-primary);
+    }
+
+    .card p {
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+
+    .like {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    footer {
+      background: #0a0d13;
+      color: #888;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ESPLab</div>
+    <ul>
+      <li><a href="#destacados">Destacados</a></li>
+      <li><a href="#arduino">Arduino</a></li>
+      <li><a href="#esp32">ESP32</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>Bienvenido a ESPLab</h1>
+    <p>Explora proyectos de tecnología con Arduino y ESP32, comparte tus ideas y aprende con la comunidad</p>
+    <button onclick="document.getElementById('proyectos').scrollIntoView({behavior: 'smooth'})">Explorar proyectos</button>
+  </div>
+
+  <section id="proyectos">
+    <h2>Proyectos Recientes</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Robot sigue líneas</h3>
+        <p>Un clásico de la robótica con sensores infrarrojos y Arduino.</p>
+        <div class="like"><i class="fa-solid fa-heart"></i> <span>12</span></div>
+      </div>
+      <div class="card">
+        <h3>Sensor ultrasónico ESP32</h3>
+        <p>Conecta un sensor HC-SR04 al ESP32 y mide distancias con precisión.</p>
+        <div class="like"><i class="fa-solid fa-heart"></i> <span>18</span></div>
+      </div>
+      <div class="card">
+        <h3>Control de luces con app</h3>
+        <p>Enciende y apaga luces desde tu móvil con ESP32 + WiFi.</p>
+        <div class="like"><i class="fa-solid fa-heart"></i> <span>25</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contacto">
+    <p>&copy; 2025 ESPLab. Comparte tus ideas con el mundo.</p>
+  </footer>
+</body>
+</html>
