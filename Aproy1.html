@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control de LED - ESPLab</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">⚡ ESPLab</div>
+    <ul>
+      <li><a href="../../index.html#arduino">Volver</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Control de LED con Arduino</h1>
+    <p>Enciende y apaga un LED con un botón.</p>
+  </header>
+
+  <section>
+    <h2>Materiales</h2>
+    <ul>
+      <li>1 Arduino UNO</li>
+      <li>1 LED</li>
+      <li>1 Resistencia de 220Ω</li>
+      <li>1 Pulsador</li>
+    </ul>
+
+    <h2>Conexiones</h2>
+    <p>LED en el pin 13 con resistencia. Pulsador entre pin 2 y GND.</p>
+
+    <h2>Código</h2>
+    <pre><code>
+const int ledPin = 13;
+const int boton = 2;
+int estado = 0;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  pinMode(boton, INPUT);
+}
+
+void loop() {
+  estado = digitalRead(boton);
+  if (estado == HIGH) {
+    digitalWrite(ledPin, HIGH);
+  } else {
+    digitalWrite(ledPin, LOW);
+  }
+}
+    </code></pre>
+  </section>
+
+  <footer>
+    <p>© 2025 ESPLab</p>
+  </footer>
+</body>
+</html>
