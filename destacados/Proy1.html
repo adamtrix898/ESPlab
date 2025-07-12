@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot sigue líneas - ESPLab</title>
+  <link rel="stylesheet" href="../../css/style.css" />
+</head>
+<body>
+  <nav>
+    <div class="logo">⚡ ESPLab</div>
+    <ul>
+      <li><a href="../../index.html#destacados">Volver</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <h1>Robot sigue líneas</h1>
+    <p>Un robot autónomo que sigue trayectorias negras usando sensores infrarrojos.</p>
+  </header>
+
+  <section>
+    <h2>Materiales</h2>
+    <ul>
+      <li>2 Motores DC</li>
+      <li>1 Placa Arduino UNO</li>
+      <li>2 Sensor Infrarrojo TCRT5000</li>
+      <li>Driver L298N</li>
+      <li>Ruedas + Chasis</li>
+    </ul>
+
+    <h2>Conexiones</h2>
+    <p>Conecta los sensores IR a los pines digitales del Arduino. Los motores al driver y el driver al Arduino.</p>
+
+    <h2>Código</h2>
+    <pre><code>
+void setup() {
+  pinMode(2, INPUT); // sensor izquierda
+  pinMode(3, INPUT); // sensor derecha
+  pinMode(9, OUTPUT); // motor A
+  pinMode(10, OUTPUT); // motor B
+}
+
+void loop() {
+  int izquierda = digitalRead(2);
+  int derecha = digitalRead(3);
+
+  if (izquierda == LOW && derecha == LOW) {
+    digitalWrite(9, HIGH);
+    digitalWrite(10, HIGH);
+  } else if (izquierda == LOW) {
+    digitalWrite(9, HIGH);
+    digitalWrite(10, LOW);
+  } else if (derecha == LOW) {
+    digitalWrite(9, LOW);
+    digitalWrite(10, HIGH);
+  } else {
+    digitalWrite(9, LOW);
+    digitalWrite(10, LOW);
+  }
+}
+    </code></pre>
+  </section>
+
+  <footer>
+    <p>© 2025 ESPLab</p>
+  </footer>
+</body>
+</html>
